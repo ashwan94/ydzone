@@ -1,0 +1,37 @@
+package common;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ibatis.session.SqlSession;
+
+import user.UserService;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+	UserService service;
+	
+	@Override
+		public void init() throws ServletException {
+			ServletContext servletContext = getServletContext();
+			SqlSession session = (SqlSession) servletContext.getAttribute("sqlSession");
+			this.service = new UserService(session);
+		}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/common/login.jsp").forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String savedId = request.getParameter("id");
+		String password = request.getParameter("password");
+	}
+
+}

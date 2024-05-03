@@ -1,0 +1,42 @@
+package user;
+
+import java.time.LocalDate;
+
+public class UserVO {
+	private String id;
+	private String nickname;
+	private String pw;
+	private String email;
+	private LocalDate createDate;
+	private LocalDate modifyDate;
+	private String delyn;
+	private String role;
+	
+	public UserVO() {
+	}
+
+	public UserVO(String id, String nickname, String pw, String email, LocalDate createDate, LocalDate modifyDate,
+			String delyn, String role) {
+		this.id = id;
+		this.nickname = nickname;
+		this.pw = pw;
+		this.email = email;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
+		this.delyn = delyn;
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", nickname=" + nickname + ", pw=" + pw + ", email=" + email + ", createDate="
+				+ createDate + ", modifyDate=" + modifyDate + ", delyn=" + delyn + ", role=" + role + "]";
+	}
+	
+	// 추후에 필요하면 생성자 만들기
+	
+	
+
+	
+	
+}

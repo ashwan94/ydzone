@@ -1,0 +1,24 @@
+package restaurant;
+
+import java.util.List;
+
+import common.SearchVO;
+
+public interface RestaurantMapper {
+	int getRestaurantListCount(SearchVO vo);
+	List<RestaurantVO> getRestaurantList(SearchVO vo);
+	List<RestaurantVO> getRestaurantStanby();
+	RestaurantVO getRestaurant(int searchNo);
+	List<RestaurantVO> getCategorySearchList(SearchVO vo);
+	SearchVO voteCheck(SearchVO vo);
+	List<SearchVO> getVoteList();
+	int deleteStanby(int rstNo);
+	int countVote(int rstNo);
+	int changeState(int cnt);
+	int doLike(SearchVO vo);
+	int doDislike(SearchVO vo);
+	int insertRestaurant(RestaurantVO vo);
+	int updateRestaurant(RestaurantVO vo);
+	int deleteRestaurant(int deleteNo);
+
+}

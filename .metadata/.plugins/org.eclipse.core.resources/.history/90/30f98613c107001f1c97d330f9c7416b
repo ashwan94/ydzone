@@ -1,0 +1,95 @@
+package common;
+
+public class SearchVO {
+	private String searchType;
+	private String searchWord;
+	private int firstRecordIndex;
+	private int lastRecordIndex;
+	private int userNo;
+	private int rstNo;
+	private int boom;			// Restaurant 의 vote 를 컨트롤할 값
+	
+	public SearchVO() {
+	}
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	
+	// STANBY Vote 용 생성자
+	public SearchVO(int userNo, int rstNo) {
+		this.userNo = userNo;
+		this.rstNo = rstNo;
+	}
+
+	// STANBY 의 boom 가져올 생성자
+	public SearchVO(int userNo, int rstNo, int boom) {
+		this.userNo = userNo;
+		this.rstNo = rstNo;
+		this.boom = boom;
+	}
+
+	public SearchVO(String searchType, String searchWord) {
+		this.searchType = searchType;
+		this.searchWord = searchWord;
+	}
+
+	@Override
+	public String toString() {
+		return "SearchVO [searchType=" + searchType + ", searchWord=" + searchWord + ", firstRecordIndex="
+				+ firstRecordIndex + ", lastRecordIndex=" + lastRecordIndex + ", userNo=" + userNo + ", rstNo=" + rstNo
+				+ ", boom=" + boom + "]";
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+
+	public int getFirstRecordIndex() {
+		return firstRecordIndex;
+	}
+
+	public void setFirstRecordIndex(int firstRecordIndex) {
+		this.firstRecordIndex = firstRecordIndex;
+	}
+
+	public int getLastRecordIndex() {
+		return lastRecordIndex;
+	}
+
+	public void setLastRecordIndex(int lastRecordIndex) {
+		this.lastRecordIndex = lastRecordIndex;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+	public int getRstNo() {
+		return rstNo;
+	}
+
+	public void setRstNo(int rstNo) {
+		this.rstNo = rstNo;
+	}
+
+	public int getBoom() {
+		return boom;
+	}
+
+	public void setBoom(int boom) {
+		this.boom = boom;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}	
+}

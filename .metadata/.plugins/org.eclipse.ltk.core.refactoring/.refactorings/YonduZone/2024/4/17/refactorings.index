@@ -1,0 +1,49 @@
+1713852638332	Move 3 resources to 'Bootstrap'
+1713852646505	Delete element
+1713854688237	Rename resource 'DDL'
+1713854842541	Rename resource 'query'
+1713854858051	Delete element
+1713856278210	Rename package 'restaurant'
+1713856284745	Rename resource 'restaurant'
+1713858608536	Delete element
+1713858754115	Rename package 'member'
+1713858762404	Rename compilation unit 'MemberDeleteServlet.java'
+1713858768911	Rename type 'MemberListServlet'
+1713858778807	Rename type 'MemberMapper'
+1713858785474	Rename type 'MemberVO'
+1713858791355	Rename type 'UserVO'
+1713858798961	Rename type 'MemberService'
+1713858808126	Rename resource 'MemberMapper.xml'
+1713858820649	Rename package 'board'
+1713858831312	Rename resource 'BoardMapper.xml'
+1713858846574	Rename type 'BoardMapper'
+1713858854330	Rename type 'BoardService'
+1713858860297	Rename type 'BoardVO'
+1713858907214	Rename resource 'member'
+1713858911044	Rename resource 'board'
+1713859126699	Rename resource 'UsersMapper.xml'
+1713859257700	Rename package 'users'
+1713859267032	Rename type 'UsersMapper'
+1713859277182	Rename type 'UsersService'
+1713859282380	Rename type 'UsersVO'
+1713860729687	Delete element
+1713861357449	Rename resource 'users'
+1713867176994	Rename type 'insert'
+1713867182348	Delete element
+1713945849928	Delete element
+1713959161844	Rename resource 'food'
+1713959889790	Rename resource 'FoodMapper.xml'
+1713959899951	Rename package 'food'
+1713959915188	Rename type 'FoodInsert'
+1713959923841	Rename type 'FoodMapper'
+1713959931591	Rename type 'FoodService'
+1713959938108	Rename type 'FoodVO'
+1713961268989	Delete element
+1714026336606	Rename resource 'FileDatas'
+1714026352635	Rename resource 'images'
+1714032105926	Rename type 'FileInput'
+1714032717553	Delete element
+1714032722739	Delete element
+1714089693181	Delete element
+1714091605919	Delete element
+1714197690887	Move 'kakaoMap.jsp' to 'kakaoMap'

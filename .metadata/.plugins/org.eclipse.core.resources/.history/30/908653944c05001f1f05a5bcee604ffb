@@ -1,0 +1,100 @@
+package user;
+
+import java.time.LocalDate;
+
+public class UserVO {
+	private String id;
+	private String nickname;
+	private String pw;
+	private String email;
+	private LocalDate createDate;
+	private LocalDate modifyDate;
+	private String delyn;
+	private String role;
+	
+	public UserVO() {
+	}
+
+	public UserVO(String id, String nickname, String pw, String email, LocalDate createDate, LocalDate modifyDate,
+			String delyn, String role) {
+		this.id = id;
+		this.nickname = nickname;
+		this.pw = pw;
+		this.email = email;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
+		this.delyn = delyn;
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", nickname=" + nickname + ", pw=" + pw + ", email=" + email + ", createDate="
+				+ createDate + ", modifyDate=" + modifyDate + ", delyn=" + delyn + ", role=" + role + "]";
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getPw() {
+		return pw;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public LocalDate getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDate getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(LocalDate modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+	public String getDelyn() {
+		return delyn;
+	}
+
+	public void setDelyn(String delyn) {
+		this.delyn = delyn;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qna.QNAMapper">
+	<select id="getQNAList" parameterType="searchVO" resultType="QNAVO">
+		select
+			a.no
+			, b.name writer
+			, a.title
+			, a.create_date
+			, a.hits
+		from
+			QNA a
+			inner join users b on a.writer = b.id
+		<where>
+			<if test="searchType == 'title'">
+				title like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchType == 'content'">
+				content like '%' || #{searchWord} || '%'
+			</if>
+			<if test="searchType == 'writer'">
+				b.name like '%' || #{searchWord} || '%'
+			</if>
+		</where>
+		order by create_date desc
+	</select>
+</mapper>
