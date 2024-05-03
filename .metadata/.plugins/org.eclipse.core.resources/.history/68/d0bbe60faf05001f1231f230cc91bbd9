@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="restaurant.RestaurantMapper">
+
+	<select id="getRestaurantListCount" parameterType="searchVO" resultType="int">
+		select
+			count(*)
+		from
+			restaurant r
+		where
+			state = 'STANBY'
+	</select>
+
+	<select id="getRestaurantList" parameterType="searchVO" resultType="rstVO">
+		select
+			r.no, MAX(r.restaurant_name) restaurant_name, MAX(r.intro) intro, MAX(r.open) open,
+			MAX(r.addr) addr, MAX(r.tel) tel, MAX(r.details) details, MAX(r.hits) hits, MAX(r.create_date) create_date,
+			MAX(r.delyn) delyn, MAX(r.state) state, MAX(r.file_name) file_name,  MAX(m.menu_name) menu_name,
+			MIN(m.price) price, MAX(category) category
+		from
+			restaurant r
+			inner join menu m on r.no = m.restaurant_id
+		WHERE 
+			r.DELYN = 'N'
+		AND
+			r.state = 'ADMIT'
+		group by
+			r.NO
+	</select>
+	
+	<select id="getRestaurantStanby" resultType="rstVO">
+		select
+			r.no, MAX(r.restaurant_name) restaurant_name, MAX(r.intro) intro, MAX(r.open) open,
+			MAX(r.addr) addr, MAX(r.tel) tel, MAX(r.details) details, MAX(r.hits) hits, MAX(r.create_date) create_date,
+			MAX(r.delyn) delyn, MAX(r.state) state, MAX(r.file_name) file_name,  MAX(m.menu_name) menu_name,
+			MIN(m.price) price, MAX(category) category
+		from
+			restaurant r
+			inner join menu m on r.no = m.restaurant_id
+		WHERE 
+			r.DELYN = 'N'
+		AND
+			r.state = 'STANBY'
+		group by
+			r.NO
+	</select>
+	
+	<!-- 음식점 등록 후 메뉴 정보 등록 -->
+	<insert id="insertRestaurant" parameterType="rstVO" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+		insert into restaurant
+			(restaurant_name, intro, open, addr, tel, details, file_name, file_size)
+		values
+			(#{restaurantName}, #{intro}, #{open}, #{addr}, #{tel}, #{details}, #{fileName}, #{fileSize})
+	</insert>
+	
+	
+	<!-- CATEGORY 에 따라 전체 음식점 리스트 조회 -->
+	<select id="getCategorySearchList" parameterType="searchVO" resultType="rstVO">
+		select
+			r.no, MAX(r.restaurant_name) restaurant_name, MAX(r.intro) intro, MAX(r.open) open,
+			MAX(r.addr) addr, MAX(r.tel) tel, MAX(r.details) details, MAX(r.hits) hits, MAX(r.create_date) create_date,
+			MAX(r.delyn) delyn, MAX(r.state) state, MAX(r.file_name) file_name,  MAX(m.menu_name) menu_name,
+			MIN(m.price) price, MAX(category) category
+		from
+			restaurant r
+			inner join menu m on r.no = m.restaurant_id
+		where
+			category = #{searchType}
+		and
+			state = 'ADMIT'
+		and
+			delyn = 'N'
+		group by
+			r.no
+	</select>
+	
+	<insert id="doLike" parameterType="String, String">
+		insert into stanby
+			(user_no, restaurant_no)
+		values
+			(#{user_no}, #{restaurant_no})
+	</insert>
+
+	
+</mapper>

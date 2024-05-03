@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="restaurant.RestaurantMapper">
+  <select id="voteCheck" parameterType="searchVO" resultType="searchVO">
+		select
+			user_no, restaurant_no as rst_no
+		from
+			stanby
+		where
+			user_no = #{userNo}
+		and
+			restaurant_no = #{rstNo}
+	</select>
+	
+	<select id="getVoteList" resultType="searchVO">
+		select
+			user_no, restaurant_no as rst_no
+		from
+			stanby
+	</select>
+	
+	<select id="countVote" parameterType="int" resultType="int">
+		select
+			count(restaurant_no as rst_no)
+		from	
+			stanby
+		where
+			rst_no = #{rstNo}
+	</select>
+	
+	<insert id="doLike" parameterType="searchVO">
+		insert into stanby
+			(user_no, restaurant_no)
+		values
+			(#{userNo}, #{rstNo})
+	</insert>
+
+	<delete id="doDislike" parameterType="searchVO">
+		delete from
+			stanby
+		where
+			user_no = #{userNo}
+		and
+			restaurant_no = #{rstNo}
+	</delete>
+</mapper>

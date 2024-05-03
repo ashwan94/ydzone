@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:param value="메뉴 정보 입력" name="title"/>
+<jsp:param value="메뉴 정보 입력" name="center"/>
+<jsp:param value="대표 메뉴 입력" name="content"/>
+</jsp:include>
+<style>
+	#form div, label{
+		margin:5px;
+	}
+</style>
+<div class="row">
+<div class="col-4"></div>
+<div class="col-4">
+<form action="/menu/add" method="post" id="form">
+	<label>
+	<div>
+		밥집명
+		<input type="text" readonly name="restaurantName" value="${newRstInfo.restaurantName }">
+	</div>
+	</label>
+	<label>
+		메뉴명 : <input type="text" name="menuName" placeholder="후라이드/양념 반반">
+	</label>
+	<label>
+		가격 : <input type="number" name="price" placeholder="21000">
+	</label>
+	<label>
+		<select type="text" name="category">
+			<option>카테고리</option>
+			<option value="밥">밥</option>
+			<option value="국/찌개">국/찌개</option>
+			<option value="면/분식">면/분식</option>
+			<option value="야식">야식</option>
+		</select>
+	</label>
+	<label>
+		<input type="hidden" name="${newRstInfo.no }">
+	</label>
+	<button id="btn">완료</button>
+	<button type="button" onclick="/main">취소</button>
+</form>
+<div class="col-4"></div>
+</div>
+</div>
+<script>
+	const btn = document.querySelector("#btn");
+	const menuEl = document.querySelector("[name='menuName']");
+	const priceEl = document.querySelector("[name='price']");
+	
+	btn.addEventListener("click", function(e) {
+		e.preventDefault();
+		
+		if(rstName.value == "") {
+			alert("상호명을 입력하세요.");
+			rstName.focus();
+			
+		}else{
+			if(imgEl.value == "") {
+				alert("이미지를 최소 1개 이상 업로드하세요");
+				imgEl.focus();
+			}else{
+				const form = document.querySelector("#form");
+				form.submit();
+			}
+		}
+	})
+</script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

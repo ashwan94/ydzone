@@ -1,0 +1,173 @@
+-----------------------------------------------------------------------------------
+-- USERS TABLE 생성
+create table USERS(
+	no number generated always as identity primary key
+	, id varchar2(50) not null
+	, pw varchar2(100) not null
+	, nickname varchar2(50) not null
+	, email varchar2(50) not null
+	, create_date date default SYSDATE
+	, modify_date date default null
+	, delyn varchar2(10) default 'N'
+	, role varchar2(10) default 'U'
+)
+
+select * from users order by no asc
+
+
+-----------------------------------------------------------------------------------
+-- QNA TABLE 생성
+create table QNA(
+	no number generated always as identity primary key
+	, title varchar2(200)
+	, content varchar2(4000)
+	, create_date date default SYSDATE
+	, modify_date date default null
+	, hits number(30) default 0
+	, delyn varchar2(10) default 'N'
+)
+
+select * from QNA order by no asc
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
+-- FOOD TABLE 생성
+create table RESTAURANT (
+	no number generated always as identity primary key
+	, restaurant_name varchar2(50) not null
+	, intro varchar2(200)
+	, open varchar2(200)
+	, addr varchar2(200) not null
+	, img varchar2(4000) default null
+	, tel varchar2(100)
+	, details varchar2(100)
+	, hits number(30) default 0
+	, create_date date default SYSDATE
+	, modify_date date default null
+	, delyn varchar2(10) default 'N'
+	, state varchar2(10) default 'STANBY'
+	, file_name varchar2(1000)
+	, file_size number(30)
+)
+-- STATE
+-- AMDIT 이면 정상 게시
+-- STANBY 면 유저들의 채택을 기다리는 상태
+select * from restaurant order by no asc
+
+commit
+
+
+
+-----------------------------------------------------------------------------------
+-- MENU TABLE 생성
+create table MENU (
+	no number generated always as identity primary key
+	, restaurant_id number(10) not null
+	, menu_name varchar2(100) not null
+	, price number(10) not null
+	, category varchar2(50) not null
+)
+
+select * from menu order by no asc
+commit
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
+-- REVIEW TABLE 생성
+create table REVIEW (
+	no number generated always as identity primary key
+	, user_id number(10) not null
+	, star number(5)
+	, title varchar2(200)
+	, content varchar2(1000)
+	, delyn varchar2(10) default 'N'
+)
+
+select * from review order by no asc
+
+
+
+
+-----------------------------------------------------------------------------------
+-- STANBY Table 생성
+create table stanby (
+	no number generated always as identity primary key
+	,	user_no number(10)
+	,	restaurant_no number(10)
+	,	vote_date date default sysdate
+)
+
+select *
+from restaurant
+
+
+
+
+
+-----------------------------------------------------------------------------------
+
+-- RESTAURANT 과 MENU table JOIN
+-- 음식점 1개당 메뉴가 1개 나오도록
+select
+	*
+from
+	restaurant r, menu m
+where
+	r.no = m.restaurant_id
+order by r.no asc
+
+
+
+-- CATEGORY 가 '밥'인 음식점 리스트 조회
+select
+	r.no, MAX(r.restaurant_name) restaurant_name, MAX(r.intro) intro, MAX(r.open) open,
+	MAX(r.addr) addr, MAX(r.tel) tel, MAX(r.details) details, MAX(r.hits) hits, MAX(r.create_date) create_date,
+	MAX(r.delyn) delyn, MAX(r.state) state, MAX(r.file_name) file_name,  MAX(m.menu_name) menu_name,
+	MIN(m.price) price, MAX(category) category
+from restaurant r
+inner join menu m on r.no = m.restaurant_id
+where category = '밥'
+and state = 'ADMIT'
+and delyn = 'N'
+group by r.no
+
+
+-- MAIN 화면에 출력할 상태가 ADMIT 인 음식점들
+select
+	r.no, MAX(r.restaurant_name) restaurant_name, MAX(r.intro) intro, MAX(r.open) open,
+	MAX(r.addr) addr, MAX(r.tel) tel, MAX(r.details) details, MAX(r.hits) hits, MAX(r.create_date) create_date,
+	MAX(r.delyn) delyn, MAX(r.state) state, MAX(r.file_name) file_name,  MAX(m.menu_name) menu_name,
+	MIN(m.price) price, MAX(category) category
+from restaurant r
+inner join menu m on r.no = m.restaurant_id
+and state = 'ADMIT'
+and delyn = 'N'
+group by r.no
+
+-- 입점 대기 화면에 출력할 상태가 STANBY 인 음식점들
+select
+	r.no, MAX(r.restaurant_name) restaurant_name, MAX(r.intro) intro, MAX(r.open) open,
+	MAX(r.addr) addr, MAX(r.tel) tel, MAX(r.details) details, MAX(r.hits) hits, MAX(r.create_date) create_date,
+	MAX(r.delyn) delyn, MAX(r.state) state, MAX(r.file_name) file_name,  MAX(m.menu_name) menu_name,
+	MIN(m.price) price, MAX(category) category
+from
+	restaurant r
+	inner join menu m on r.no = m.restaurant_id
+WHERE 
+	r.DELYN = 'N'
+AND
+	r.state = 'STANBY'
+and rownum between 1 and 10
+group by
+	r.NO
+	
+	

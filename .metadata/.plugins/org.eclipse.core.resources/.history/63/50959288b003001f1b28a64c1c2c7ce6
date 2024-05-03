@@ -1,0 +1,50 @@
+package restaurant;
+
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ibatis.session.SqlSession;
+
+/**
+ * Servlet implementation class ViewServlet
+ */
+@WebServlet("/restaurant/view")
+public class ViewServlet extends HttpServlet {
+	RestaurantService service;
+	
+	@Override
+		public void init() throws ServletException {
+			ServletContext servletContext = getServletContext();
+			SqlSession session = (SqlSession)servletContext.getAttribute("sqlSession");
+			service = new RestaurantService(session);
+		}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int no = Integer.parseInt(request.getParameter("no"));
+		String rstName = request.getParameter("restaurantName");
+		String intro = request.getParameter("intro");
+		String open = request.getParameter("open");
+		String addr = request.getParameter("addr");
+		String tel = request.getParameter("tel");
+		String details = request.getParameter("details");
+		String hits = request.getParameter("hits");
+		String createDate = request.getParameter("createDate");
+		String fileName = request.getParameter("fileName");
+		String menuName = request.getParameter("menuName");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String category = request.getParameter("fileName");
+		
+		
+		RestaurantVO vo = new RestaurantVO(no, rstName, intro, open, addr, tel, details, hits, createDate, fileName, menuName, price, category);	
+		
+		
+	}
+
+
+}

@@ -1,0 +1,39 @@
+package common;
+
+public class SearchVO {
+	private String searchType;
+	private String searchWord;
+	private int firstRecordIndex;
+	private int lastRecordIndex;
+	private int userNo;
+	private int rstNo;
+	private int boom;			// Restaurant 의 vote 를 컨트롤할 값
+	
+	public SearchVO() {
+	}
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	
+	// STANBY Vote 용 생성자
+	public SearchVO(int userNo, int rstNo) {
+		this.userNo = userNo;
+		this.rstNo = rstNo;
+	}
+
+	// STANBY 의 boom 가져올 생성자
+	public SearchVO(int userNo, int rstNo, int boom) {
+		this.userNo = userNo;
+		this.rstNo = rstNo;
+		this.boom = boom;
+	}
+
+	public SearchVO(String searchType, String searchWord) {
+		this.searchType = searchType;
+		this.searchWord = searchWord;
+	}
+		
+	
+	
+}
