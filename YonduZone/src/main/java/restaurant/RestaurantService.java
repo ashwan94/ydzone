@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import common.SearchVO;
+import menu.MenuVO;
 
 public class RestaurantService {
 	
@@ -36,6 +37,10 @@ public class RestaurantService {
 	
 	public List<RestaurantVO> getCategorySearchList(SearchVO vo) {
 		return mapper.getCategorySearchList(vo);
+	}
+	
+	public List<MenuVO> getMenuList(int no){
+		return mapper.getMenuList(no);
 	}
 	
 	public int changeState(int cnt) {

@@ -281,3 +281,11 @@ where
 		from
 			stanby s
 )
+
+select *
+from restaurant r, menu m
+where r.no = m.restaurant_id
+and r.no = 1
+
+select *
+from menu

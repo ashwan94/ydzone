@@ -2,7 +2,7 @@ package menu;
 
 public class MenuVO {
 	private int no;
-	private int newRstNo;		// 새로 추가된 음식점 번호
+	private int newRstNo;			// 새로 추가된 음식점 번호
 	private String menuName;		// 메뉴 이름
 	private int price;		    	// 가격
 	private String category;		// 카테고리

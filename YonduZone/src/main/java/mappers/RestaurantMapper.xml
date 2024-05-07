@@ -59,6 +59,17 @@
 			rnum between #{firstRecordIndex} + 1 and #{lastRecordIndex}
 	</select>
 	
+	<select id="getMenuList" parameterType="int" resultType="menuVo">
+		select
+			m.menu_name, m.price, m.category
+		from
+			restaurant r, menu m
+		where
+			r.no = m.restaurant_id
+		and
+			m.restaurant_id = #{no}
+	</select>
+	
 	<select id="getBoom" parameterType="searchVO" resultType="searchVO">
 		select
 			user_no, restaurant_no rstNo, boom
