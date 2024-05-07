@@ -28,6 +28,11 @@ public class RestaurantVO {
 	public RestaurantVO() {
 	}
 	
+	// View page 에서 조회할 n개의 메뉴 정보에 대한 생성자
+	public RestaurantVO(int no) {
+		this.no = no;
+	}
+
 	// MAIN 화면에 출력할 음식점 리스트
 	// MENU Table 과 JOIN 된 결과값을 가져올 생성자
 		public RestaurantVO(int no, String restaurantName, String intro, String open, String addr, String tel,

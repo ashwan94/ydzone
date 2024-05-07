@@ -3,6 +3,7 @@ package restaurant;
 import java.util.List;
 
 import common.SearchVO;
+import menu.MenuVO;
 
 public interface RestaurantMapper {
 	int getRestaurantListCount(SearchVO vo);
@@ -12,6 +13,7 @@ public interface RestaurantMapper {
 	List<RestaurantVO> getCategorySearchList(SearchVO vo);
 	SearchVO voteCheck(SearchVO vo);
 	List<SearchVO> getVoteList();
+	List<MenuVO> getMenuList(int no);
 	int deleteStanby(int rstNo);
 	int countVote(int rstNo);
 	int changeState(int cnt);

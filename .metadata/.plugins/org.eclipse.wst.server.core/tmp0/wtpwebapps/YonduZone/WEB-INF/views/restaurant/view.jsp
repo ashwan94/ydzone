@@ -12,17 +12,68 @@
 		color:grey;
 		font-size:12px;
 	}
+	.gradient-overlay{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 350px; /* 그라데이션 레이어의 높이를 조정하세요 */
+  		background: linear-gradient(to top, white 35%, transparent); /* 그라데이션 색상 및 투명도를 조정하세요 */
+	}
 </style>
 <jsp:include page="/WEB-INF/views/kakaoMap/mapCSS.jsp"/>
 
 <!-- TODO if 문으로 만약 STANBY 음식점이 없으면 '없습니다' 라는 IMG 출력 -->
 <c:set var="info" value="${rstDetailInfo }"/>
-<div class="text-center row">
-	<div class="col-1"></div>
-	<div class="col-10">
-		<img class="rounded p-2" style="width:50%;height:50vh;" src="${pageContext.request.contextPath }/Source/Restaurant_images/${info.fileName}" alt="${info.fileName }"/>
-	</div>
-	<div class="col-1"></div>
+<div class="text-center">
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="${pageContext.request.contextPath }/Source/Restaurant_images/${info.fileName}" class="d-block img-fluid mx-auto" alt="...">
+      <div class="gradient-overlay"></div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="${pageContext.request.contextPath }/Source/Restaurant_images/${info.fileName}" class="d-block img-fluid mx-auto" alt="...">
+      <div class="gradient-overlay"></div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath }/Source/Restaurant_images/${info.fileName}" class="d-block img-fluid mx-auto" alt="...">
+      <div class="gradient-overlay"></div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<c:forEach var="menu" items="${menuList}">
+	<div>no : ${menu.no }</div>
+	<div>이름 : ${menu.menuName }</div>
+	<div>가격 : ${menu.price }</div>
+	<div>카테고리 : ${menu.category }</div>
+</c:forEach>
 
 <div class="row">
 	<div class="col-1"></div>
@@ -74,5 +125,6 @@
 		<div class="col-3"></div>
 	</div>
 </div>
+
 <jsp:include page="/WEB-INF/views/kakaoMap/kakaoMap.jsp"/>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
