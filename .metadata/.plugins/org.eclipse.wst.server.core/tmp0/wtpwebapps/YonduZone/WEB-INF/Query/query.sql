@@ -245,7 +245,9 @@ select *
 from users
 where id = 'admin'
 
-
+select count(*)
+from restaurant
+where state = 'STANBY'
 
 
 
